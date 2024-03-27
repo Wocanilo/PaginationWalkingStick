@@ -239,9 +239,6 @@
                 </FormGroup>
                 <!-- Level 4 -->
                 <h2 class="mb-2 pt-4">Level 4 - Page Global Directory (PGD) to Page Upper Directory (PUD)</h2>
-                <p>The first step in our journey is to obtain the Page Upper Directory (PUD) address that corresponds to the Virtual Address whose page we want to locate.
-                    As the Page Global Directory is an array of pointers to different Page Upper Directories, the address were the PUD of the current address is located at
-                </p>
                 <FormGroup class="mb-3">
                     <Label for="pgdEntryAddress">PGD Entry At:</Label>
                     <Input type="text" id="pgdEntryAddress" aria-describedby="pgdEntryHelp" disabled bind:value={$pgdLocationAddress}/>
@@ -255,8 +252,7 @@
                 <EntryFlags addressInput={pgdEntry} addressType="PGD" virtualAddress={targetAddress} kernelOffset={kernelOffset}/>
                 <!-- Level 3 -->
                 <h2 class="mb-2 pt-4">Level 3 - Page Upper Directory (PUD) to Page Middle Directory (PMD)</h2>
-                <p>The second step is to repeat the operation with the Page Global Directory (PGD) to obtain the corresponding Page Upper Directory (PUD)
-                <FormGroup class="mt-4">
+                <FormGroup>
                     <Label for="pmdAddress">PUD Entry at:</Label>
                     <Input type="text" id="pmdAddress" disabled bind:value={$pudLocationAddress}/>
                     <FormText>Address of the PUD in which the PMD address of the page is located</FormText>
@@ -269,8 +265,7 @@
                 <EntryFlags addressInput={pudEntry} addressType="PUD" virtualAddress={targetAddress} kernelOffset={kernelOffset}/>
                 <!-- Level 2 -->
                 <h2 class="mb-2 pt-4">Level 2 - Page Middle Directory (PMD) to Page Table (PT)</h2>
-                <p>The second step is to repeat the operation with the Page Global Directory (PGD) to obtain the corresponding Page Upper Directory (PUD)
-                <FormGroup class="pt-3">
+                <FormGroup>
                     <Label for="ptLocated">PMD Entry at:</Label>
                     <Input type="text" id="ptLocated" disabled aria-describedby="ptLocatedhelp" bind:value={$pmdLocationAddress}/>
                     <FormText id="ptLocatedhelp">Address of the PMD where our entry is located</FormText>
@@ -282,9 +277,8 @@
                 </FormGroup>
                 <EntryFlags addressInput={pmdEntry} addressType="PMD" virtualAddress={targetAddress} kernelOffset={kernelOffset}/>
                 <!-- Level 1 -->
-                <h2 class="mb-2 pt-4">Level 1 - Page Table (PT) to Physical Address</h2>
-                <p>The last step is to get the entry of the Page Upper Directory (PUD) to obtain the Physical Address of our target virtual address
-                <FormGroup class="pt-3">
+                <h2 class="pt-4">Level 1 - Page Table (PT) to Physical Address</h2>
+                <FormGroup>
                     <Label for="physicalLocated">PT Entry at:</Label>
                     <Input type="text" id="physicalLocated" disabled aria-describedby="physicalLocatedhelp" bind:value={$ptLocationAddress}/>
                     <FormText id="physicalLocatedhelp">Address of the PT where our entry is located</FormText>
